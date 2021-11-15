@@ -1,0 +1,42 @@
+
+
+#register{
+    color: #e17055;
+    font-weight: 500;
+    align-items: right;
+    margin-left: 0.3rem;
+}
+#register:hover{
+    color: #e74c3c;
+    font-weight: 600;
+    transform: translateY(-0.05em);
+    text-decoration: underline;
+}
+#ques{
+    margin-left: 6rem;
+}
+#logg{
+    display: flex;
+    /* justify-content: center; */
+}
+#btn{
+    align-items: flex-start;
+    background-color: 7919fa;
+}
+.centered{
+    text-align: center;
+    font-family: 'Lora', serif;
+    font-size: x-large;
+}
+h1{
+    font-weight: bold;
+}
+body{
+    /* background: #8360c3;  
+    background: -webkit-linear-gradient(to top, #2ebf91, #8360c3); 
+    background: linear-gradient(to top, #2ebf91, #8360c3);  */
+    background: #a8ff78;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #78ffd6, #a8ff78);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #78ffd6, #a8ff78); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}

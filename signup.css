@@ -1,0 +1,13 @@
+.centered{
+    text-align: center;
+    font-family: 'Lora', serif;
+    font-size: x-large;
+}
+h1{
+    font-weight: bold;
+}
+body{
+    background: #ed4264; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ed4264, #ffedbc); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ed4264, #ffedbc);
+}
