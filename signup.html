@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
-		<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+	  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,600&family=Oswald&display=swap" rel="stylesheet">
     <title>Sign Up</title>
@@ -20,13 +20,13 @@
                 <div class="columns is-centered">
                     <div class="column is-4">
 
-                        <form action="login.html" class='box'>
+                        <form id="signedup" action="login.html" class='box' method="post">
                             <div id="heading" class='centered'><h1>Create a New Account</h1>
                             </div>
                             <div class="field">
                                 <label for='username' class="label">Username</label>
                                 <div class="control has-icons-left">
-                                  <input class="input" id='username' type="text" placeholder="Enter a Unique Username">
+                                  <input class="input" id='username' type="text" name="username" placeholder="Enter a Unique Username">
                                   <span class="icon is-small is-left">
                                     <i class="fas fa-user"></i>
                                   </span>
@@ -35,7 +35,7 @@
                             <div class="field">
                                 <label for='fullname' class="label">Full Name</label>
                                 <div class="control has-icons-left">
-                                  <input class="input" id='fullname' type="text" placeholder="Enter your Full name">
+                                  <input class="input" id='fullname' type="text" name="fullname" placeholder="Enter your Full name">
                                   <span class="icon is-small is-left">
                                     <i class="fa fa-address-card"></i>
                                   </span>
@@ -44,7 +44,7 @@
                             <div class="field">
                                 <label for='phone' class="label">Phone Number</label>
                                 <div class="control has-icons-left">
-                                  <input class="input" id='phone' type="tel" placeholder="Enter your Phone Number">
+                                  <input class="input" id='phone' type="tel" name="phone" placeholder="Enter your Phone Number">
                                   <span class="icon is-small is-left">
                                     <i class="fa fa-mobile"></i>
                                   </span>
@@ -53,7 +53,7 @@
                             <div class="field">
                                 <label for='email' class="label">E-mail ID</label>
                                 <div class="control has-icons-left">
-                                  <input class="input" id='email' type="email" placeholder="Enter your email ID">
+                                  <input class="input" id='email' type="email" name="email" placeholder="Enter your email ID">
                                   <span class="icon is-small is-left">
                                     <i class="fa fa-envelope-open"></i>
                                   </span>
@@ -63,7 +63,7 @@
                             <div class="field">
                                 <label for='password' class="label">Password</label>
                                 <div class="control has-icons-left">
-                                  <input class="input" id='password' type="password" placeholder="Create a Strong Password">
+                                  <input class="input" id='password' type="password" name="password" placeholder="Create a Strong Password">
                                   <span class="icon is-small is-left">
                                     <i class="fas fa-lock"></i>
                                   </span>
@@ -71,16 +71,108 @@
                             </div>
                             <div id=jodd class="field">
                                 <span id=btn><button class="button is-danger is-fullwidth" id="loginbtn">Create Account</button></span>
-
                             </div>
-
-
                         </form>
-                        
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+        <script src="/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
+        <script src="/vendors/formvalidation/dist/js/plugins/Bulma.min.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function (e) {
+                FormValidation.formValidation(document.getElementById('signedup'), {
+                    fields: {
+                        username: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'The Username is required',
+                                },
+                                stringLength: {
+                                    min: 6,
+                                    max: 10,
+                                    message: 'The Username must be more than 6 and less than 10 characters long',
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z0-9_]+$/,
+                                    message: 'The Username can only consist of alphabetical, number and underscore',
+                                },
+                            },
+                        },
+                        fullname: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'The  full name is required',
+                                },
+                                stringLength: {
+                                    min: 6,
+                                    max: 30,
+                                    message: 'The  full name must be more than 6 and less than 30 characters long',
+                                },
+                                regexp: {
+                                  regexp: /^[a-z\s]+$/i,
+                                    message: 'The full name can only consist of alphabets and spaces only',
+                                },
+                            },
+                        },
+                        phone: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'The phone no. is required',
+                                },
+                                numeric: {
+                                    message: 'The phone no. must be a number',
+                                },
+                            },
+                        },
+                        email: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'email ID is required',
+                                },
+                                stringLength: {
+                                    min: 8,
+                                    max: 30,
+                                    message: 'The  email must contain @ in it',
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
+                                    message: 'The email can only consist of alphabets,numbers,underscore and @',
+                                },
+
+                            },
+                        },
+                        password: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'The availability option is required',
+                                },
+                                stringLength: {
+                                    min: 8,
+                                    message: 'The  password must be more than 8 characters long',
+                                },
+                                regexp: {
+                                  regexp: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                                    message: 'The password can only consist of Minimum eight characters, at least one letter and one number',
+                                },
+                            },
+                        },
+                    },
+                    plugins: {
+                        trigger: new FormValidation.plugins.Trigger(),
+                        bulma: new FormValidation.plugins.Bulma(),
+                        submitButton: new FormValidation.plugins.SubmitButton(),
+                        icon: new FormValidation.plugins.Icon({
+                            valid: 'fa fa-check',
+                            invalid: 'fa fa-times',
+                            validating: 'fa fa-refresh',
+                        }),
+                    },
+                });
+            });
+        </script>
 </body>
 </html>
