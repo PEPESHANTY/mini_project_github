@@ -8,6 +8,7 @@ const query = util.promisify(connection.query).bind(connection);
 
 exports.userSignup=async(req,res)=>{
     const {username,email,password} = req.body;
+    console.log(req.body);
     const userObj={
         user_id:uniqid(),
         username,

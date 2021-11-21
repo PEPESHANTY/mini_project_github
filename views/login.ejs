@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,600&family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <title>Log In</title>
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body>
+    <section class="hero is-fullheight">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-4">
+              <form action="/api/customer/login" method="POST" class="box">
+                <div id="heading" class="centered">
+                  <h1>Log In to Your Account</h1>
+                </div>
+                <!-- <div class="field">
+                                <label for='username' class="label">Username</label>
+                                <div class="control has-icons-left">
+                                  <input class="input" id='username' type="text" placeholder="Enter your Username">
+                                  <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                  </span>
+                                </div>
+                            </div> -->
+                <div class="field">
+                  <label for="email" class="label">E-mail ID</label>
+                  <div class="control has-icons-left">
+                    <input
+                      class="input"
+                      id="email"
+                      type="email"
+                      name="email"
+                      placeholder="Enter your email ID"
+                    />
+                    <span class="icon is-small is-left">
+                      <i class="fa fa-envelope-open"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="password" class="label">Password</label>
+                  <div class="control has-icons-left">
+                    <input
+                      class="input"
+                      id="password"
+                      type="password"
+                      name="password"
+                      placeholder="Enter your Password"
+                    />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                  </div>
+                </div>
+                <div id="logg" class="field">
+                  <span id="btn"
+                    ><button class="button is-link is-fullwidth" id="loginbtn">
+                      Log in
+                    </button></span
+                  >
+                  <span id="ques"><small> No account yet?</small></span>
+                  <a href="signup.html" id="register">Register Here.</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

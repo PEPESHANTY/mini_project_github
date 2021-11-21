@@ -1,4 +1,5 @@
 const dotenv = require("dotenv");
+const path = require("path");
 dotenv.config({path:"configs/backend.env"});
 const express = require("express");
 const app = express();
@@ -9,6 +10,16 @@ const indexRouter = require("./routes/indexRouter.js");
 const customerRouter = require("./routes/customerRouter.js");
 const ordersRouter = require("./routes/ordersRouter.js");
 const productsRouter = require("./routes/productsRouter.js");
+
+
+const viewsPath = path.join(__dirname,"./views")
+console.log(viewsPath);
+const cssPath = path.join(__dirname,"./public/css");
+console.log(cssPath);
+const photosPath = path.join(__dirname,"./public/photos");
+console.log(photosPath);
+
+
 
 // * connection to mysql
 connection.connect((err)=>{
@@ -23,6 +34,10 @@ connection.connect((err)=>{
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
+app.set("view engine","ejs");
+app.set("views",viewsPath);
+app.use("/css",express.static(cssPath));
+app.use("/photos",express.static(photosPath));
 app.use("/",indexRouter);
 app.use("/api/customer",customerRouter);
 app.use("/api/orders",ordersRouter);
