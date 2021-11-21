@@ -35,12 +35,12 @@ const verify = async(req,res,next)=>{
             }
         }   
         else{
-            return res.status(401).send({
-                status:false,
-                message:"you are unauthorized"
-            })
+            // return res.status(401).send({
+            //     status:false,
+            //     message:"you are unauthorized"
+            // })
 
-            // res.render("login")
+            res.render("login")
         }
     }   
     // catch(err){

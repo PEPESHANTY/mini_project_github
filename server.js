@@ -3,6 +3,7 @@ const path = require("path");
 dotenv.config({path:"configs/backend.env"});
 const express = require("express");
 const app = express();
+const { Server } = require("socket.io");
 const PORT = process.env.port || 4000;
 const connection = require("./db/connection.js");
 const cookieParser = require("cookie-parser");
@@ -44,6 +45,15 @@ app.use("/api/orders",ordersRouter);
 app.use("/api/products",productsRouter);
 
 
-app.listen(PORT,()=>{
+const server = app.listen(PORT,()=>{
     console.log("listening on port",PORT);
 })
+console.log(server);
+
+
+const io = new Server(server, { /* options */ });
+
+io.on("connection", (socket) => {
+    // ...
+});
+

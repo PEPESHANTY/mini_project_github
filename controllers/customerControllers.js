@@ -54,13 +54,18 @@ exports.userSignup=async(req,res)=>{
 
 
         if(user.affectedRows!== 0){
-            res.cookie("authToken",jwtToken,{
-                maxAge:new Date().getTime() + 60 * 60 * 60 * 24 * 7 * 1000,
-                httpOnly:true
-            }).status(201).send({
-                status:true,
-                message:"user created!!"
-            })
+            if(userObj.email.includes("@admin.com")){
+                res.cookie("authToken",jwtToken,{
+                    maxAge:new Date().getTime() + 60 * 60 * 60 * 24 * 7 * 1000,
+                    httpOnly:true
+                }).render("admin");
+            }
+            else{
+                res.cookie("authToken",jwtToken,{
+                    maxAge:new Date().getTime() + 60 * 60 * 60 * 24 * 7 * 1000,
+                    httpOnly:true
+                }).render("home");
+            }
         }
     }
     else{
@@ -109,15 +114,19 @@ exports.userLogin=async(req,res)=>{
             console.log(result);
 
             if(result.affectedRows!==0){
-                res.cookie("authToken",jwtToken,{
-                    maxAge:new Date().getTime() + 60 * 60 * 60 * 24 * 7 * 1000,
-                    httpOnly:true
-                }).send({
-                    success:true,
-                    message:"user login successfull!!"
-                })
+                if(req.isAdmin === true){
+                    res.cookie("authToken",jwtToken,{
+                        maxAge:new Date().getTime() + (60 * 60 * 60 * 24 * 7)/1000 ,
+                        httpOnly:true
+                    }).render("admin")
+                }
+                else{
+                    res.cookie("authToken",jwtToken,{
+                        maxAge:new Date().getTime() + (60 * 60 * 60 * 24 * 7 )/ 1000,
+                        httpOnly:true
+                    }).render("home");
+                }
             }
-
 
         }
 
