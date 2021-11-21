@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cards List - Bulma Templates</title>
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="">
+  </head>
+
+  <body>
+      <form action="/api/products" method="POST">
+        <div class="field">
+            <label for='Product_name' class="label">Product_name</label>
+            <div class="control has-icons-left">
+              <input class="input" id='Product_name' type="text" name="Product_name" placeholder="Enter a Product_name">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+        </div>
+        <div class="field">
+            <label for='product_price' class="label">product_price</label>
+            <div class="control has-icons-left">
+              <input class="input" id='product_price' type="text" name="product_price" placeholder="Enter a product_price">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for='product_description' class="label">Description</label>
+            <div class="control has-icons-left">
+              <input class="input" id='product_description' type="text" name="product_description" placeholder="Enter a Product_description">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for='product_image' class="label">Product_image</label>
+            <div class="control has-icons-left">
+              <input class="input" id='product_image' type="file" name="product_image" placeholder="Enter a Product_image">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+        </div>
+
+
+      </form>
+
+    
+  </body>
+
+</html>
