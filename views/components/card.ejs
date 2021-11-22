@@ -1,0 +1,20 @@
+<div class="product__card">
+    <% const img = `http://localhost:5000/uploads/${product.product_image}`%>
+    <img class="product__img" src=<%= img %>>
+    <span><%= product.product_name %></span>
+    <span><%= product.product_description %></span>
+    <h3 class=""> <i class="fas fa-rupee-sign"></i> <%= product.product_price%>  </h3>
+    <div class="quantity_buttons">
+        <button class="quantity_inc"><i class="fas fa-plus"></i></button>
+        <span id="quantity">1</span>
+        <button class="quantity_dec" ><i class="fas fa-minus"></i></button>
+    </div>
+    <button class="add__to__cart" data-product_id = <%= `${product}` %> >
+        <span class="icon is-small is-left">
+            <i class="fas fa-shopping-cart"></i>
+        </span>
+        <span>
+            Add to cart
+        </span>
+    </button>
+</div>

@@ -7,13 +7,17 @@ const query = util.promisify(connection.query).bind(connection);
 const verify = async(req,res,next)=>{
     // try{    
         let jwtToken;
+        let tokenObj;
         console.log(req.cookies);
-        if(req.cookies.authToken){
+        if(req.cookies.authToken!==undefined){
             jwtToken = req.cookies.authToken;
+            tokenObj = jwt_decode(jwtToken);
         }
-        const tokenObj = jwt_decode(jwtToken);
-        // console.log(tokenObj);
-        if(tokenObj.exp * 1000 > new Date().getTime()){
+        else{
+            return res.render("login");
+        }
+        console.log(tokenObj);
+        if(tokenObj.exp * 1000 > new Date().getTime() && req.cookies.authToken!==null){
 
             // const {user_id,email} = jwt.verify(jwtToken);
             const obj = jwt.verify(jwtToken,process.env.JWT_SECRET_KEY);
@@ -40,7 +44,7 @@ const verify = async(req,res,next)=>{
             //     message:"you are unauthorized"
             // })
 
-            res.render("login")
+            return res.render("login")
         }
     }   
     // catch(err){
