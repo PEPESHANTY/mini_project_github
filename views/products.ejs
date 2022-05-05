@@ -26,8 +26,28 @@
     />
   </head>
   <body>
-    <h1>this is products page!!</h1>
-    <% %>
+    <div class="header">
+      <h1>products page</h1>
+      <a href="/cart">
+      <button class="cart_button">
+        <span class="icon is-small is-left">
+          <i class="fas fa-shopping-cart"></i>
+      </span>
+        cart
+      </button>
+    </a>
+      <a href="api/customer/logout">
+      <button class="logout_button">
+        <!-- <span class="icon is-small is-left">
+          <i class="fas fa-shopping-cart"></i>
+      </span> -->
+        logout
+      </button>
+    </a>
+
+
+    </div>
+    
 
     <div class="products__container">
       <% if(products.length!==0){ %> <% products.map((product)=>{%> <%-

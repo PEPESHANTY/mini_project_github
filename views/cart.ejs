@@ -5,16 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="css/cart.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet">
   </head>
   <body>
-    <h1>this is cart page</h1>
-    <% if(orders.length === 0 ){%>
-    <h1>no orders</h1>
-    <%}else{%> 
-    <h1>orders</h1>
-    <%}%>
+    <h1 id="heading">this is cart page</h1>
+    
+    <div class="cart">
+      <% cartArray.map((product)=>{%>
+        <%- include("./components/cartCard.ejs",{product}) %>
+      <%}) %>
+      </div>
+      
+      <!-- <button id="payment_button">
+        <%let total_payment = 0 %>
+        <%for(let i=0;i<cartArray.length;i++){%>
+          <% total_payment = total_payment + cartArray[i].product_price * cartArray[i].product_quantity%>
+      <%}%>
+      <h1><%= total_payment %></h1> -->
+
+    <!-- </button> -->
 
     
-
+    <button class="confirm__order__button" data-total_payment=<%=`${total_payment}`%>>pay <%= total_payment %> ₹</button>
+    
+    <!-- <button id="rzp-button1">Pay</button> -->
+    
+    
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <%- include("./components/footer.ejs") %>
   </body>
 </html>
+<!-- rzp_test_6nSOEARvqcDmof
+13YCLiMwWGkSqZo49UgDIlID -->

@@ -3,7 +3,7 @@ const path = require("path");
 dotenv.config({path:"configs/backend.env"});
 const express = require("express");
 const app = express();
-const { Server } = require("socket.io");
+const { Server, Socket } = require("socket.io");
 const PORT = process.env.port || 4000;
 const connection = require("./db/connection.js");
 const cookieParser = require("cookie-parser");
@@ -11,6 +11,7 @@ const indexRouter = require("./routes/indexRouter.js");
 const customerRouter = require("./routes/customerRouter.js");
 const ordersRouter = require("./routes/ordersRouter.js");
 const productsRouter = require("./routes/productsRouter.js");
+const paymentRouter = require("./routes/paymentRouter.js");
 
 
 const viewsPath = path.join(__dirname,"./views")
@@ -49,18 +50,32 @@ app.use("/",indexRouter);
 app.use("/api/customer",customerRouter);
 app.use("/api/orders",ordersRouter);
 app.use("/api/products",productsRouter);
+app.use("/api/payment",paymentRouter);
+
 
 
 const server = app.listen(PORT,()=>{
     console.log("listening on port",PORT);
 })
 
-const io = new Server(server, { /* options */ });
+const io = new Server(server, { });
 
+
+const {addToCart} = require("./socketControllers.js");
+const socketHandler = require("./socketHandler.js");
 io.on("connection", (socket) => {
     console.log("connected!!!");
-    socket.on("connect_to_client",({data})=>{
-        console.log(data);
+    socket.on("join",({roomname})=>{
+        socket.join(roomname);
+    })
+    socket.on("add__to__cart",({product_id,product_quantity,user_id})=>{
+        // const {cartArray} = await addToCart({product_id,product_quantity,user_id});
+        // console.log(cartArray);
+        // socket.emit("addToCartSuccess",{cartArray});
+        socketHandler(io,socket).addToCart({product_id,product_quantity,user_id})
+    });
+    socket.on("cancel__order",({order_id,user_id})=>{
+        socketHandler(io,socket).cancelOrder({order_id,user_id})
     })
 });
 

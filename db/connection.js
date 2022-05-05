@@ -62,7 +62,18 @@ create table IF NOT EXISTS jwt_tokens(
   );
   `
 createTable(query);
-       
+
+
+query = `
+create table IF NOT EXISTS payments(
+  payment_id varchar(200) primary key,
+  amount INT,
+  user_id varchar(200),
+  foreign key(user_id) references customer(user_id)
+  );
+`
+    
+createTable(query);
           
 // connection.end();
 module.exports = connection;

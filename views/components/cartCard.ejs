@@ -1,0 +1,15 @@
+<div class="cartCard">
+    <div class="cart__img__div">
+        <img src=<%= `http://localhost:5000/uploads/${product.product_image}` %>>
+    </div>
+    <div class="cart_product__info">
+        <h4><%= product.product_name %></h4>
+        <h4><%= product.product_description %></h4>
+        <h4><%= product.product_price %></h4>
+        <h4><%= product.product_quantity %></h4>
+    </div>
+    <div class="cart_total">
+        <h2><%= product.product_quantity * product.product_price %></h2>
+    </div>
+    <button class="cancel__order" data-order_id =<%= `${product.order_id}`%> data-user_id=<%= `${user.user_id}` %> >cancel</button>
+</div>

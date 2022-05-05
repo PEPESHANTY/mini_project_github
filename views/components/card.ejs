@@ -5,11 +5,11 @@
     <span><%= product.product_description %></span>
     <h3 class=""> <i class="fas fa-rupee-sign"></i> <%= product.product_price%>  </h3>
     <div class="quantity_buttons">
-        <button class="quantity_inc"><i class="fas fa-plus"></i></button>
-        <span id="quantity">1</span>
         <button class="quantity_dec" ><i class="fas fa-minus"></i></button>
+        <span id="quantity">1</span>
+        <button class="quantity_inc"><i class="fas fa-plus"></i></button>
     </div>
-    <button class="add__to__cart" data-product_id = <%= `${product}` %> >
+    <button class="add__to__cart" data-product_id =<%=`${product.product_id}`%> data-user_id = <%= `${user_id}`%> >
         <span class="icon is-small is-left">
             <i class="fas fa-shopping-cart"></i>
         </span>

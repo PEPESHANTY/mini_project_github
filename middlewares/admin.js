@@ -13,5 +13,9 @@ exports.isAdmin=async(req,res,next)=>{
             req.isAdmin = true;
             next();
         }
+        else{
+            console.log("is admin is working!!!");
+            next();
+        }
     }
 }

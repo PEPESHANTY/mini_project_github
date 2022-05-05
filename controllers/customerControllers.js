@@ -58,13 +58,30 @@ exports.userSignup=async(req,res)=>{
                 res.cookie("authToken",jwtToken,{
                     maxAge:new Date().getTime() + 60 * 60 * 60 * 24 * 7 * 1000,
                     httpOnly:true
-                }).render("admin");
+                })
+                
+                res.render("admin");
             }
             else{
-                res.cookie("authToken",jwtToken,{
-                    maxAge:new Date().getTime() + 60 * 60 * 60 * 24 * 7 * 1000,
-                    httpOnly:true
-                }).render("home");
+
+                let mysql = `
+                    select * from products;
+                `
+                const products = await query(mysql);
+                console.log("these are products!!",products);
+
+                // res.cookie("authToken",jwtToken,{
+                //     maxAge:new Date().getTime() + 60 * 60 * 60 * 24 * 7 * 1000,
+                //     httpOnly:true
+                // })
+
+                // res.render("products",{
+                //     products,
+                //     user_id:users[0].user_id
+                // });
+
+                res.redirect("/products");
+
             }
         }
     }
@@ -78,6 +95,9 @@ exports.userSignup=async(req,res)=>{
 
 exports.userLogin=async(req,res)=>{
     try{
+
+        console.log("user login is working!!!");
+
         const {email,password} = req.body;
         console.log(req.body);
 
@@ -121,10 +141,18 @@ exports.userLogin=async(req,res)=>{
                     }).render("admin")
                 }
                 else{
+                    let mysql = `
+                    select * from products;
+                `
+                    const products = await query(mysql);
+                    console.log("products are ",products);
+
                     res.cookie("authToken",jwtToken,{
                         maxAge:new Date().getTime() + (60 * 60 * 60 * 24 * 7 )/ 1000,
                         httpOnly:true
-                    }).render("home");
+                    }).render("products",{
+                        products
+                    });
                 }
             }
 
@@ -137,4 +165,35 @@ exports.userLogin=async(req,res)=>{
             message:"internal server error!!"
         })
     }
+}
+
+exports.userLogout=async(req,res)=>{
+    console.log(req.user);
+
+    let mysql ="";
+    let tokens = "";
+    if(req.cookies.authToken){
+        mysql = `
+            select * from jwt_tokens
+            where token = "${req.cookies.authToken}";
+        `
+        tokens = await query(mysql);
+    }
+
+    if(tokens.length!==0){
+        mysql = `
+            delete from jwt_tokens
+            where user_id = "${req.user.user_id}" and email="${req.user.email}";
+        `
+        const results = await query(mysql);
+        console.log(results);
+        if(results){
+            res.clearCookie("authToken")
+            res.redirect("/login");
+        }
+    }
+
+
+
+
 }
